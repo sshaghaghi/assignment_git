@@ -14,6 +14,9 @@
 using namespace std;
 using namespace yarp::os;
 
+bool evenOdd(int);
+bool prime(int);
+
 /***************************************************/
 int main()
 {
@@ -37,15 +40,15 @@ int main()
     int num=request.get(0).asInt();
 
     // process the payload
-    bool isNumEven=true;    // FILL IN THE CODE
-    bool isNumPrime=true;   // FILL IN THE CODE
+    bool isNumEven=evenOdd(num);
+    bool isNumPrime=prime(num);   // FILL IN THE CODE
 
     // build the response
     string parity=(isNumEven?"even":"odd");
     string primality=(isNumPrime?"prime":"composite");
     Bottle response;
-    response.addString("parity-dummy");     // FILL IN THE CODE
-    response.addString("primality-dummy");  // FILL IN THE CODE
+    response.addString(parity);     // FILL IN THE CODE
+    response.addString(primality);  // FILL IN THE CODE
 
     // send back the response
     port.reply(response);
@@ -55,3 +58,23 @@ int main()
 
     return EXIT_SUCCESS;
 }
+
+bool evenOdd (int n)
+{
+    if (n % 2 == 0)
+    return false;
+    else 
+    return true; 
+}
+
+bool prime (int n)
+{
+    for ( int i = 2; n-1; i++)
+    {
+        if (n % i ==0){
+            return false;
+        }
+    }
+    return true;
+}
+
